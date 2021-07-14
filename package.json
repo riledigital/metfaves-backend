@@ -1,4 +1,6 @@
 {
+  "name": "MetFaves",
+  "author": "Ri Le <rl2999@columbia.edu>",
   "dependencies": {
     "@koa/router": "^10.0.0",
     "axios": "^0.21.1",
