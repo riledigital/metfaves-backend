@@ -1,6 +1,7 @@
 {
-  "name": "MetFaves",
+  "name": "metfaves-backend",
   "author": "Ri Le <rl2999@columbia.edu>",
+  "description": "REST API backend for MetFaves.",
   "dependencies": {
     "@koa/router": "^10.0.0",
     "axios": "^0.21.1",
