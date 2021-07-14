@@ -26,9 +26,5 @@ router.get("/search", async (ctx) => {
   }
 });
 
-const fetchObject = async function (id) {
-  const resp = await httpClient.get(`${CONFIG.OBJECT}/${id}`);
-  return resp.body;
-};
 
 module.exports = router;

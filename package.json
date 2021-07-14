@@ -9,5 +9,9 @@
   },
   "devDependencies": {
     "eslint": "^7.30.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "lint": "eslint . --ext .js"
   }
 }
