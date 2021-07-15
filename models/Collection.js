@@ -27,6 +27,9 @@ const Collection = Sequelize.define("Collection",{
       key: "id"
     }
   },
+  itemJson: {
+    type: DataTypes.JSON,
+  },
   name: {
     type: DataTypes.STRING(140),
     unique: true,

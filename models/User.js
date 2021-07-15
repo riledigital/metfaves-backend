@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const User = Sequelize.define("Collection",{
+const User = Sequelize.define("User",{
   // Model attributes are defined here
   id: {
     type: DataTypes.UUIDV4,
