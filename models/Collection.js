@@ -1,20 +1,16 @@
-const ItemList = require("./ItemList");
-const User = require("./User");
-
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define("Collection",{
   // Model attributes are defined here
     id: {
       type: DataTypes.UUIDV4,
-      allowNull: false,
       primaryKey: true,
       unique: true
     },
     author: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.UUIDV4,
       references: {
-        model: "User",
+        model: "Users",
         key: "id"
       }
     },
@@ -23,9 +19,10 @@ module.exports = function (sequelize, DataTypes) {
       default: true,
     },
     items: {
+      allowNull: true,
       type: DataTypes.UUIDV4,
       references: {
-        model: "ItemList",
+        model: "ItemLists",
         key: "id"
       }
     },

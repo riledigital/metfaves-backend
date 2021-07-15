@@ -10,15 +10,17 @@ module.exports = function (sequelize, DataTypes) {
       primaryKey: true
     },
     metItem: {
+      type: DataTypes.UUIDV4,
       references: {
         model: "MetItem",
         key: "id"
       }
     },
     author: {
+      type: DataTypes.UUIDV4,      
       allowNull: false,
       references: {
-        model: User,
+        model: "User",
         key: "id"
       }
     },

@@ -8,8 +8,17 @@ const sequelize = new Sequelize({
   storage: CONFIG.DB.CONNECTION
 });
 
+const Annotation = require("./models/Annotation")(sequelize, DataTypes);
 const Collection = require("./models/Collection")(sequelize, DataTypes);
+const ItemList = require("./models/ItemList")(sequelize, DataTypes);
+const MetItem = require("./models/MetItem")(sequelize, DataTypes);
+const User = require("./models/User")(sequelize, DataTypes);
 // const Collection = require("./models/Collection")(sequelize, Sequelize.DataTypes)
+
+const initializeDb = async function () {
+  await sequelize.sync();
+  console.log("All models were synchronized successfully.");
+};
   
 const testConnection = async function () {
   try {
@@ -20,6 +29,8 @@ const testConnection = async function () {
   }
 };
 
+initializeDb();
+
 module.exports = {
-  testConnection, sequelize: Sequelize, Collection
+  testConnection, sequelize: Sequelize, Collection, User
 };

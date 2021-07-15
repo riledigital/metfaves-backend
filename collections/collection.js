@@ -1,5 +1,8 @@
 const Router = require("@koa/router");
 const router = new Router();
+const bodyParser = require("koa-bodyparser");
+router.use(bodyParser());
+
 const { sequelize, Collection } = require("../utils");
 
 router.get("/collections", async (ctx) => {
@@ -15,7 +18,6 @@ router.get("/collections", async (ctx) => {
     if (data === null) {
       ctx.body = JSON.stringify("Error: Collection not found");
     }
-    
     ctx.body = JSON.stringify(data);
   } catch (err) {
     console.error(err);
@@ -25,7 +27,7 @@ router.get("/collections", async (ctx) => {
 router.get("/collection", async (ctx) => {
   // Get the collection of a specific ID
   console.debug(ctx);
-  const id = ctx.query.id;
+  const id = ctx.query;
   console.debug(ctx.query);
   if (!id) {
     ctx.body = {error: "No collection ID specified."};
@@ -45,11 +47,11 @@ router.get("/collection", async (ctx) => {
 
 router.post("/collection", async (ctx) => {
   // Create/update a new collection for a user
-  const { name, user, items, description } = ctx.query;
+  const { name, user, items, description } = ctx.request.body;
   try {
-  // TODO: Get a specific collection.
+    // Create a new collection and insert into DB
     const data = {
-      name, user, items, description
+      name, user, items, description, author: "lol"
     };
     const newCollection = await Collection.create(data);
     console.log("New Collection ID:", newCollection.id);
