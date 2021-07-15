@@ -153,3 +153,5 @@ dist
 
 db/*
 settings.json
+local.session.sql
+.gitignore

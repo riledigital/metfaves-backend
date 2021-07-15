@@ -3,12 +3,13 @@ module.exports = function (sequelize, DataTypes) {
   // Model attributes are defined here
     id: {
       type: DataTypes.UUIDV4,
+      default: DataTypes.UUIDV4,
       primaryKey: true,
       unique: true
     },
     author: {
       allowNull: true,
-      type: DataTypes.UUIDV4,
+      type: DataTypes.STRING,
       references: {
         model: "Users",
         key: "id"

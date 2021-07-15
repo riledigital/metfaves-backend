@@ -5,12 +5,6 @@
       "driver": "SQLite",
       "name": "local",
       "database": "./db/db.sqlite"
-    },
-    {
-      "previewLimit": 50,
-      "driver": "SQLite",
-      "database": "${workspaceFolder:metfaves-backend}/db/db.sqlite",
-      "name": "test"
     }
   ]
 }

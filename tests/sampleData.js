@@ -28,9 +28,9 @@ Promise.allSettled(users.map(async (record) => {
   try {
     const user = await User.create(record);
     console.log("inserted user!");
+    return user;
   } catch (e) {
     console.error(`Error on user ${JSON.stringify(record)}`);
     console.error(e);
   }
-  return user;
 }));

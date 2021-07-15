@@ -3,8 +3,8 @@ module.exports = function (sequelize, DataTypes) {
   // Model attributes are defined here
     id: {
       type: DataTypes.UUIDV4,
+      default: DataTypes.UUIDV4,
       allowNull: false,
-      unique: true,
       primaryKey: true
     },
     name: {
