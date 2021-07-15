@@ -1,3 +1,5 @@
+
+
 // initialize database with sample data
 const { sequelize, User } = require("../utils");
 

@@ -12,10 +12,12 @@
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
-    "eslint": "^7.30.0"
+    "eslint": "^7.30.0",
+    "jest": "^27.0.6"
   },
   "scripts": {
     "start": "nodemon index.js",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "test": "jest tests/test*"
   }
 }

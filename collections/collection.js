@@ -48,16 +48,20 @@ router.get("/collection", async (ctx) => {
 router.post("/collection", async (ctx) => {
   // Create/update a new collection for a user
   const { name, user, items, description } = ctx.request.body;
+  
   if (!user) {
     ctx.response.status = 400;
     return;
   }
+  
   try {
     // Create a new collection and insert into DB
     const data = {
       name, items, description, author: user
     };
-    const newCollection = await Collection.create(data);
+    
+    const newCollection = await Collection.upsert(data);
+    await newCollection.save();
     console.log("New ID", {name: name, id: newCollection.id});
     // Return the collection that was created
     ctx.response.status = 200;
@@ -67,5 +71,7 @@ router.post("/collection", async (ctx) => {
     ctx.response.status = 400;
   }
 });
+
+
 
 module.exports = router;
