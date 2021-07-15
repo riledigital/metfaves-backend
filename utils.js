@@ -1,14 +1,16 @@
 const CONFIG = require("./config.js");
 
 // Database connection
-const { Sequelize } = require("sequelize");
-const { Collection } = require("./models/Collection");
+const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: CONFIG.DB.CONNECTION
 });
 
+const Collection = require("./models/Collection")(sequelize, DataTypes);
+// const Collection = require("./models/Collection")(sequelize, Sequelize.DataTypes)
+  
 const testConnection = async function () {
   try {
     await sequelize.authenticate();

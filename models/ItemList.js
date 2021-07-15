@@ -5,7 +5,8 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.UUIDV4,
       allowNull: false,
-      unique: true
+      unique: true,
+      primaryKey: true
     },
     jsonList: {
       type: DataTypes.JSON,

@@ -7,12 +7,14 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.UUIDV4,
       allowNull: false,
+      primaryKey: true,
       unique: true
     },
     author: {
       allowNull: false,
+      type: DataTypes.UUIDV4,
       references: {
-        model: User,
+        model: "User",
         key: "id"
       }
     },
@@ -23,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
     items: {
       type: DataTypes.UUIDV4,
       references: {
-        model: ItemList,
+        model: "ItemList",
         key: "id"
       }
     },
