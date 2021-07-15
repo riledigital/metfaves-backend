@@ -5,6 +5,10 @@ const { sequelize, Collection } = require("../utils");
 router.get("/collections", async (ctx) => {
   // Get collections for a user
   const user = ctx.query.user;
+  if (!user) {
+    ctx.body = { error: "No user ID supplied." };
+    return;
+  }
   try {
   // TODO: Get list of collections by a user
     const data = await Collection.findAll({ where: { user: user } });
