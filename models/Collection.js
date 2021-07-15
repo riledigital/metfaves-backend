@@ -10,6 +10,7 @@ const Collection = Sequelize.define("Collection",{
     unique: true
   },
   author: {
+    allowNull: false,
     references: {
       model: User,
       key: "id"
@@ -25,6 +26,19 @@ const Collection = Sequelize.define("Collection",{
       model: ItemList,
       key: "id"
     }
-  }
+  },
+  name: {
+    type: DataTypes.STRING(140),
+    unique: true,
+    allowNull: false,
+  },
+  description: {
+    allowNull: true,
+    type: DataTypes.STRING(140)
+  },
+  iconUrl: {
+    allowNull: true,
+    type: DataTypes.TEXT
+  },
 });
 module.exports = Collection;

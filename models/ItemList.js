@@ -6,15 +6,12 @@ const ItemList = Sequelize.define("ItemList", {
   id: {
     type: DataTypes.UUIDV4,
     allowNull: false,
+    unique: true
   },
-  metId: {
-    type: DataTypes.TEXT,
+  jsonList: {
+    type: DataTypes.JSON,
+    allowNull: true
   },
-  
-}, {
-  // Other model options go here
-  sequelize, // We need to pass the connection instance
-  modelName: "User" // We need to choose the model name
 });
 
 module.exports = ItemList;
