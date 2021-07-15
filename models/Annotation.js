@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const ItemList = require("./ItemList");
+const MetItem = require("./MetItem");
 const User = require("./User");
 
 const Annotation = Sequelize.define("Annotation",{
@@ -7,6 +7,12 @@ const Annotation = Sequelize.define("Annotation",{
     type: DataTypes.UUIDV4,
     allowNull: false,
     unique: true
+  },
+  metItem: {
+    references: {
+      model: MetItem,
+      key: "id"
+    }
   },
   author: {
     allowNull: false,
@@ -19,19 +25,14 @@ const Annotation = Sequelize.define("Annotation",{
     type: DataTypes.BOOLEAN,
     default: true,
   },
-
   name: {
     type: DataTypes.STRING(140),
     unique: true,
     allowNull: false,
   },
-  description: {
-    allowNull: true,
-    type: DataTypes.STRING(140)
-  },
-  iconUrl: {
+  body: {
     allowNull: true,
     type: DataTypes.TEXT
-  },
+  }
 });
 module.exports = Annotation;
