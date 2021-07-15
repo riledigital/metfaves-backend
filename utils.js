@@ -2,6 +2,8 @@ const CONFIG = require("./config.js");
 
 // Database connection
 const { Sequelize } = require("sequelize");
+const { Collection } = require("./models/Collection");
+
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: CONFIG.DB.CONNECTION
@@ -17,5 +19,5 @@ const testConnection = async function () {
 };
 
 module.exports = {
-  testConnection, sequelize: Sequelize
+  testConnection, sequelize: Sequelize, Collection
 };
