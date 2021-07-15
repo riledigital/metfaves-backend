@@ -1,25 +1,6 @@
 const Router = require("@koa/router");
 const router = new Router();
-
-const CONFIG = require("../config.js");
-
-// Database connection
-const { Sequelize } = require("sequelize");
-// Option 2: Passing parameters separately (sqlite)
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "db/db.sqlite"
-});
-
-const testConnection = async function () {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-};
-
+const { sequelize } = require("../utils");
 
 router.get("/collections", async (ctx) => {
   // Get collections for a user
@@ -61,12 +42,13 @@ router.get("/collection", async (ctx) => {
 
 router.post("/collection", async (ctx) => {
   // Create/update a new collection for a user
-  const { name, user, items, description, tags } = ctx.query;
+  const { name, user, items, description } = ctx.query;
   try {
   // TODO: Get a specific collection.
     const data = {
       name, user, items, description, tags
     };
+    const collection = await Collection.create(data);
     // Return the collection that was created
     ctx.body = JSON.stringify(data);
   } catch (err) {
