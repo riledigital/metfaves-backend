@@ -29,7 +29,9 @@ const testConnection = async function () {
   }
 };
 
-initializeDb();
+(async function () {
+  await initializeDb({force: true});
+})();
 
 module.exports = {
   testConnection, sequelize: Sequelize, Collection, User

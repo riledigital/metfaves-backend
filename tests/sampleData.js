@@ -23,10 +23,14 @@ const users = [
   { "id": "41f20f0f-31b6-420b-9d03-8f32a6494d15", "name": "Ardea cinerea", "email": "rmoreinisj@wisc.edu", "bio": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.", "profilePictureUrl": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus." },
   { "id": "4d0af733-de57-4fd2-8132-5be1a8f3967b", "name": "Galago crassicaudataus", "email": "vcutbushk@fc2.com", "bio": "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.", "profilePictureUrl": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem." },
 ];
-const settled = Promise.allSettled(users.map(async (record) => {
-  return await User.create(record);
-})).then(results => {
-  console.log(results.status);
-});
 
-const done = await settled;
+Promise.allSettled(users.map(async (record) => {
+  try {
+    const user = await User.create(record);
+    console.log("inserted user!");
+  } catch (e) {
+    console.error(`Error on user ${JSON.stringify(record)}`);
+    console.error(e);
+  }
+  return user;
+}));
