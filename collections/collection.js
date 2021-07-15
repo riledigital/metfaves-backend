@@ -3,7 +3,7 @@ const router = new Router();
 const { sequelize, Collection } = require("../utils");
 
 router.get("/collections", async (ctx) => {
-  // Get collections for a user
+  // Get all collections for a user
   const user = ctx.query.user;
   if (!user) {
     ctx.body = { error: "No user ID supplied." };
@@ -23,19 +23,20 @@ router.get("/collections", async (ctx) => {
 });
 
 router.get("/collection", async (ctx) => {
-  // Search Met API
+  // Get the collection of a specific ID
   console.debug(ctx);
-  const id = ctx.query.id ?? 38237;
+  const id = ctx.query.id;
   console.debug(ctx.query);
+  if (!id) {
+    ctx.body = {error: "No collection ID specified."};
+    return;
+  }
   try {
   // TODO: Get a specific collection.
-    const data = {
-      title: "",
-      items: "",
-      author: "",
-      dateCreated: "",
-      id
-    };
+    const data = await Collection.findOne({ where: { id: id } });
+    if (data === null) {
+      ctx.body = JSON.stringify("Error: Collection not found");
+    }
     ctx.body = JSON.stringify(data);
   } catch (err) {
     console.error(err);
