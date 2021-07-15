@@ -1,6 +1,7 @@
 const Router = require("@koa/router");
 const router = new Router();
 const { sequelize } = require("../utils");
+const Collection = require("../models/Collection").Collection;
 
 router.get("/collections", async (ctx) => {
   // Get collections for a user
