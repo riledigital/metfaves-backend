@@ -10,7 +10,7 @@ const {
   getAnnotationById,
   createAnnotation,
   updateAnnotation,
-  deleteAnnotation
+  deleteAnnotation,
 } = require("../controllers/AnnotationController");
 
 router.get("/annotations", getAnnotations);

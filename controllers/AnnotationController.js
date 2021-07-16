@@ -5,7 +5,7 @@ const getAnnotations = async (ctx, next) => {
   if (ctx.request.query.get("user")) {
     return getAnnotationsByUser(ctx, next);
   }
-  
+
   if (ctx.request.query.get("metObjectId")) {
     return getAnnotationsByMetObjectID(ctx, next);
   }
@@ -37,7 +37,7 @@ const getAnnotationsByUser = async (ctx, next) => {
   }
 };
 
-// 
+//
 
 const getAnnotationById = async (ctx, next) => {
   const { id } = ctx.request.query;
@@ -58,7 +58,7 @@ const createAnnotation = async (ctx, next) => {
   try {
     const annotation = await Annotation.create(data);
     ctx.status = 200;
-    ctx.body = {id: annotation.id};
+    ctx.body = { id: annotation.id };
   } catch (err) {
     console.error(err);
     ctx.status = 400;
@@ -70,7 +70,7 @@ const updateAnnotation = async (ctx, next) => {
   const { id, metItem, author, name, body } = ctx.request.query;
   const data = { metItem, author, name, body };
   try {
-    const annotation = await Annotation.update(data, {where: {id: id}});
+    const annotation = await Annotation.update(data, { where: { id: id } });
     ctx.status = 200;
     // Return updated annotation
     ctx.body = annotation;
@@ -84,9 +84,9 @@ const updateAnnotation = async (ctx, next) => {
 const deleteAnnotation = async (ctx, next) => {
   const { id } = ctx.request.query;
   try {
-    const annotation = await Annotation.destroy({where: {id: id}});
+    const annotation = await Annotation.destroy({ where: { id: id } });
     ctx.status = 200;
-    ctx.body = {id: annotation.id};
+    ctx.body = { id: annotation.id };
   } catch (err) {
     console.error(err);
     ctx.status = 400;
@@ -100,5 +100,5 @@ module.exports = {
   // single
   createAnnotation,
   updateAnnotation,
-  deleteAnnotation
+  deleteAnnotation,
 };

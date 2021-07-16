@@ -4,8 +4,8 @@ const APP_CONFIG = {
   SEARCH: "/public/collection/v1/search",
   PORT: 8081,
   DB: {
-    CONNECTION: "db/db.sqlite"
-  }
+    CONNECTION: "db/db.sqlite",
+  },
 };
 
 module.exports = APP_CONFIG;

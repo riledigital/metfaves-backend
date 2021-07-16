@@ -28,5 +28,5 @@ const getMetObject = async (ctx) => {
 };
 
 module.exports = {
-  getMetObject
+  getMetObject,
 };

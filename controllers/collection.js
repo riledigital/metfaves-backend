@@ -8,7 +8,7 @@ const getCollectionsByUser = async (ctx) => {
     return;
   }
   try {
-  // TODO: Get list of collections by a user
+    // TODO: Get list of collections by a user
     const data = await Collection.findAll({ where: { user: user } });
     if (data === null) {
       ctx.body = JSON.stringify("Error: Collection not found");
@@ -25,11 +25,11 @@ const getCollectionById = async (ctx) => {
   const id = ctx.query;
   console.debug(ctx.query);
   if (!id) {
-    ctx.body = {error: "No collection ID specified."};
+    ctx.body = { error: "No collection ID specified." };
     return;
   }
   try {
-  // TODO: Get a specific collection.
+    // TODO: Get a specific collection.
     const data = await Collection.findOne({ where: { id: id } });
     if (data === null) {
       ctx.body = JSON.stringify("Error: Collection not found");
@@ -43,18 +43,21 @@ const getCollectionById = async (ctx) => {
 const createCollection = async (ctx) => {
   // Create/update a new collection for a user
   const { name, user, items, description } = ctx.request.body;
-  
+
   if (!user) {
     ctx.response.status = 400;
     return;
   }
-  
+
   try {
     // Create a new collection and insert into DB
     const data = {
-      name, items, description, author: user
+      name,
+      items,
+      description,
+      author: user,
     };
-    
+
     const newCollection = await Collection.upsert(data);
     await newCollection.save();
     console.log("New ID", { name: name, id: newCollection.id });
@@ -70,5 +73,5 @@ const createCollection = async (ctx) => {
 module.exports = {
   getCollectionsByUser,
   getCollectionById,
-  createCollection
+  createCollection,
 };
