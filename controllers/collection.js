@@ -1,9 +1,4 @@
-const Router = require("@koa/router");
-const router = new Router();
-const bodyParser = require("koa-bodyparser");
-router.use(bodyParser());
-
-const { sequelize, Collection } = require("../utils");
+const { Collection } = require("../models");
 
 const getCollectionsByUser = async (ctx) => {
   // Get all collections for a user
