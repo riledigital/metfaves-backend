@@ -1,14 +1,9 @@
 const Koa = require("koa");
 
 const app = new Koa();
+const allRoutes = require("./routes");
 
-// Import routers
-const CONFIG = require("./config");
-const Met = require("./met/met");
-const CollectionsApp = require("./collections/collection");
-
-app.use(CollectionsApp.routes()).use(CollectionsApp.allowedMethods());
-app.use(Met.routes()).use(Met.allowedMethods());
+app.use(allRoutes.routes()).use(allRoutes.allowedMethods());
 
 app.use(async (ctx, next) => {
   if (ctx.url === "/") {
