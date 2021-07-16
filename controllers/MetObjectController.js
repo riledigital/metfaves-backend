@@ -27,6 +27,10 @@ const getMetObject = async (ctx) => {
   }
 };
 
+const createMetObjectRecord = async (ctx) => {
+  // Make a new db record for the object to store locally...
+};
+
 module.exports = {
   getMetObject,
 };
