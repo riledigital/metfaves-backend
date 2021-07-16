@@ -4,11 +4,8 @@ const router = new Router();
 const bodyParser = require("koa-bodyparser");
 router.use(bodyParser());
 
-const {
-  getCollectionsByUser,
-  getCollectionById,
-  createCollection,
-} = require("../controllers/collection");
+const { getCollectionsByUser, getCollectionById, createCollection } =
+  require("../controllers").CollectionController;
 
 router.get("/collections", getCollectionsByUser);
 

@@ -11,7 +11,7 @@ const {
   createAnnotation,
   updateAnnotation,
   deleteAnnotation,
-} = require("../controllers/AnnotationController");
+} = require("../controllers").AnnotationController;
 
 router.get("/annotations", getAnnotations);
 
