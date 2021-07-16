@@ -60,13 +60,45 @@ const createCollection = async (ctx) => {
 
     const newCollection = await Collection.upsert(data);
     await newCollection.save();
+    await newCollection.reload();
     console.log("New ID", { name: name, id: newCollection.id });
-    // Return the collection that was created
     ctx.response.status = 200;
-    ctx.body = JSON.stringify(data);
+    ctx.body = JSON.stringify(newCollection);
   } catch (err) {
     console.error(err);
     ctx.response.status = 400;
+  }
+};
+
+const updateCollection = async (ctx, next) => {
+  // Update a new collection by its ID
+  const { name, user, items, description } = ctx.request.body;
+  try {
+    // Create a new collection and insert into DB
+    const data = {
+      name,
+      items,
+      description,
+      author: user,
+    };
+
+    if (!name) {
+      throw new Error("No name supplied.");
+    }
+
+    if (!user) {
+      throw new Error("No user ID supplied.");
+    }
+
+    const newCollection = await Collection.create(data);
+    await newCollection.reload();
+    console.log("New ID", { name: name, id: newCollection.id });
+    ctx.response.status = 200;
+    ctx.response.body = JSON.stringify(newCollection);
+  } catch (err) {
+    console.error(err);
+    ctx.response.status = 400;
+    ctx.response.body = err.message;
   }
 };
 
@@ -74,4 +106,5 @@ module.exports = {
   getCollectionsByUser,
   getCollectionById,
   createCollection,
+  updateCollection,
 };
