@@ -1,6 +1,3 @@
-const MetItem = require("./MetItem");
-const User = require("./User");
-
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define("Annotation",{
     id: {
