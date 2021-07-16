@@ -1,19 +1,19 @@
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define("Collection",{
-  // Model attributes are defined here
+  return sequelize.define("Collection", {
+    // Model attributes are defined here
     id: {
       type: DataTypes.UUIDV4,
       default: DataTypes.UUIDV4,
       primaryKey: true,
-      unique: true
+      unique: true,
     },
     author: {
       allowNull: true,
       type: DataTypes.STRING,
       references: {
         model: "Users",
-        key: "id"
-      }
+        key: "id",
+      },
     },
     public: {
       type: DataTypes.BOOLEAN,
@@ -24,8 +24,8 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.UUIDV4,
       references: {
         model: "ItemLists",
-        key: "id"
-      }
+        key: "id",
+      },
     },
     itemJson: {
       type: DataTypes.JSON,
@@ -37,11 +37,11 @@ module.exports = function (sequelize, DataTypes) {
     },
     description: {
       allowNull: true,
-      type: DataTypes.STRING(140)
+      type: DataTypes.STRING(140),
     },
     iconUrl: {
       allowNull: true,
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
   });
 };

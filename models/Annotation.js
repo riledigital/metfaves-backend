@@ -1,25 +1,25 @@
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define("Annotation",{
+  return sequelize.define("Annotation", {
     id: {
       type: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,
-      primaryKey: true
+      primaryKey: true,
     },
     metItem: {
       type: DataTypes.UUIDV4,
       references: {
         model: "MetItem",
-        key: "id"
-      }
+        key: "id",
+      },
     },
     author: {
-      type: DataTypes.UUIDV4,      
+      type: DataTypes.UUIDV4,
       allowNull: false,
       references: {
         model: "User",
-        key: "id"
-      }
+        key: "id",
+      },
     },
     public: {
       type: DataTypes.BOOLEAN,
@@ -32,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     body: {
       allowNull: true,
-      type: DataTypes.TEXT
-    }
-  });  
+      type: DataTypes.TEXT,
+    },
+  });
 };

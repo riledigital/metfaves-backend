@@ -4,5 +4,7 @@ const search = require("./search");
 
 module.exports = {
   AnnotationController: require("./AnnotationController"),
-  collection, metObject, search
+  collection,
+  metObject,
+  search,
 };

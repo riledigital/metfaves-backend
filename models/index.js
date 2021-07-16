@@ -6,7 +6,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 // Sequelize session
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: CONFIG.DB.CONNECTION
+  storage: CONFIG.DB.CONNECTION,
 });
 
 const Annotation = require("./Annotation")(sequelize, DataTypes);
@@ -20,7 +20,7 @@ const initializeDb = async function () {
   await sequelize.sync();
   console.log("All models were synchronized successfully.");
 };
-  
+
 const testConnection = async function () {
   try {
     await sequelize.authenticate();
@@ -31,11 +31,16 @@ const testConnection = async function () {
 };
 
 (async function () {
-  await initializeDb({force: true});
+  await initializeDb({ force: true });
 })();
 
 module.exports = {
-  testConnection, sequelize: Sequelize,
+  testConnection,
+  sequelize: Sequelize,
   // Models? maybe should go somewhere else
-  Annotation, Collection, User, ItemList, MetItem
+  Annotation,
+  Collection,
+  User,
+  ItemList,
+  MetItem,
 };

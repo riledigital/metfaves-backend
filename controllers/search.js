@@ -18,9 +18,8 @@ const searchMetObjects = async (ctx) => {
   } catch (err) {
     console.error(err);
   }
-  
 };
 
 module.exports = {
-  searchMetObjects
+  searchMetObjects,
 };
