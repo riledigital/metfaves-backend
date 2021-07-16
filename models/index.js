@@ -37,5 +37,5 @@ const testConnection = async function () {
 module.exports = {
   testConnection, sequelize: Sequelize,
   // Models? maybe should go somewhere else
-  Collection, User, Annotation, ItemList, MetItem
+  Annotation, Collection, User, ItemList, MetItem
 };
