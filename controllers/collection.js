@@ -5,7 +5,7 @@ router.use(bodyParser());
 
 const { sequelize, Collection } = require("../utils");
 
-router.get("/collections", async (ctx) => {
+const getCollectionsByUser = async (ctx) => {
   // Get all collections for a user
   const user = ctx.query.user;
   if (!user) {
@@ -22,9 +22,9 @@ router.get("/collections", async (ctx) => {
   } catch (err) {
     console.error(err);
   }
-});
+};
 
-router.get("/collection", async (ctx) => {
+const getCollectionById = async (ctx) => {
   // Get the collection of a specific ID
   console.debug(ctx);
   const id = ctx.query;
@@ -43,9 +43,9 @@ router.get("/collection", async (ctx) => {
   } catch (err) {
     console.error(err);
   }
-});
+};
 
-router.post("/collection", async (ctx) => {
+const createCollection = async (ctx) => {
   // Create/update a new collection for a user
   const { name, user, items, description } = ctx.request.body;
   
@@ -62,7 +62,7 @@ router.post("/collection", async (ctx) => {
     
     const newCollection = await Collection.upsert(data);
     await newCollection.save();
-    console.log("New ID", {name: name, id: newCollection.id});
+    console.log("New ID", { name: name, id: newCollection.id });
     // Return the collection that was created
     ctx.response.status = 200;
     ctx.body = JSON.stringify(data);
@@ -70,8 +70,10 @@ router.post("/collection", async (ctx) => {
     console.error(err);
     ctx.response.status = 400;
   }
-});
+};
 
-
-
-module.exports = router;
+module.exports = {
+  getCollectionsByUser,
+  getCollectionById,
+  createCollection
+};
