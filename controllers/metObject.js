@@ -1,21 +1,20 @@
-const Router = require("@koa/router");
-const router = new Router();
-
-const CONFIG = require("../config.js");
-// 38160,75414,61549,38237
 const axios = require("axios");
+const CONFIG = require("../config.js");
+
+// Sample items
+// 38160,75414,61549,38237
 const httpClient = axios.create({
   baseURL: CONFIG.API_BASE,
 });
 
-// Helpers
+// Helper
 const fetchObject = async function (id) {
   const resp = await httpClient.get(`${CONFIG.OBJECT}/${id}`);
   console.log(resp);
   return resp.data;
 };
 
-router.get("/object", async (ctx) => {
+const getMetObject = async (ctx) => {
   // Search Met API
   console.debug(ctx);
   const id = ctx.query.id ?? 38237;
@@ -26,5 +25,8 @@ router.get("/object", async (ctx) => {
   } catch (err) {
     console.error(err);
   }
-});
-module.exports = router;
+};
+
+module.exports = {
+  getMetObject
+};

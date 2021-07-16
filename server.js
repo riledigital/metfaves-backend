@@ -1,4 +1,5 @@
 const Koa = require("koa");
+
 const app = require("./app");
 // Import routers
 const CONFIG = require("./config");
