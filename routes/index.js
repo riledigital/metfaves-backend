@@ -9,7 +9,7 @@ const routerHelper = (newRoute) => {
   router.use(newRoute.routes()).use(newRoute.allowedMethods());
 };
 
-[require("./collection"), require("./metObject"), require("./search")].forEach(
+[require("./collection"), require("./metObject"), require("./Search")].forEach(
   (newRoute) => {
     routerHelper(newRoute);
   }
