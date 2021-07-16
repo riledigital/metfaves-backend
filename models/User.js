@@ -4,7 +4,7 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.UUIDV4,
       default: DataTypes.UUIDV4,
-      allowNull: false,
+      allowNull: true,
       primaryKey: true,
     },
     name: {

@@ -60,7 +60,7 @@ module.exports = {
   testConnection,
   sequelize: session,
   // Models? maybe should go somewhere else
-  ...AllModels,
+  User: require("./User")(session, DataTypes),
   // Annotation,
   // Collection,
   // User,
