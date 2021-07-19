@@ -34,7 +34,7 @@ fs.readdir("./models", (err, files) => {
 // Create a DB if it doesn't exist
 const initializeDb = async function () {
   console.debug("Synchronizing all models...");
-  await session.sync({ force: false });
+  await session.sync({ force: true });
   console.log("All models were synchronized successfully.");
 };
 
@@ -60,7 +60,7 @@ module.exports = {
   testConnection,
   sequelize: session,
   // Models? maybe should go somewhere else
-  ...AllModels,
+  User: require("./User")(session, DataTypes),
   // Annotation,
   // Collection,
   // User,
