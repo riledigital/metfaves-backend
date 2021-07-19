@@ -51,8 +51,8 @@ const createUser = async (ctx) => {
   } catch (err) {
     console.error(err);
     ctx.response.status = 400;
-    const fields = err.fields.reduce((a, b) => a + " " + b);
-    ctx.response.body = `${err.message}: ${fields}`;
+    ctx.response.body = err;
+    ctx.app.emit("error", err, ctx);
   }
 };
 

@@ -2,10 +2,10 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define("Collection", {
     // Model attributes are defined here
     id: {
-      type: DataTypes.UUIDV4,
-      default: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
-      unique: true,
     },
     author: {
       allowNull: true,
