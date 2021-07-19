@@ -1,5 +1,5 @@
 const { User } = require("../models");
-
+const { v4: uuidv4 } = require("uuid");
 const getUser = async (ctx) => {
   // Get all collections for a user
   const id = ctx.query.id;
@@ -33,6 +33,7 @@ const createUser = async (ctx) => {
     }
     // Create a new collection and insert into DB
     const data = {
+      id: uuidv4(),
       name,
       email,
       bio,
@@ -40,7 +41,7 @@ const createUser = async (ctx) => {
     };
 
     const newUser = await User.create(data);
-    await newUser.reload();
+    const reloaded = await newUser.reload();
     console.log("New user created with ID", {
       name: name,
       id: newUser.id,
@@ -50,7 +51,8 @@ const createUser = async (ctx) => {
   } catch (err) {
     console.error(err);
     ctx.response.status = 400;
-    ctx.response.body = err.message;
+    const fields = err.fields.reduce((a, b) => a + " " + b);
+    ctx.response.body = `${err.message}: ${fields}`;
   }
 };
 
